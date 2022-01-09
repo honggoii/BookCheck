@@ -1,7 +1,7 @@
 package org.honggoii.bookcheck
 
 import androidx.recyclerview.widget.RecyclerView
-import org.honggoii.bookcheck.databinding.ItemMainBinding
+import org.honggoii.bookcheck.databinding.ItemListBinding
 
-class MyViewHolder(val binding: ItemMainBinding): RecyclerView.ViewHolder(binding.root) {
+class MyViewHolder(val binding: ItemListBinding): RecyclerView.ViewHolder(binding.root) {
 }
