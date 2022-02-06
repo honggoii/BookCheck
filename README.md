@@ -9,3 +9,11 @@
 - R : 읽은 책 조회
 - U : 읽은 책 수정
 - D : 읽은 책 삭제
+
+## 사용한 Open API
+[국립 중앙도서관](https://www.nl.go.kr/NL/contents/N31101030700.do)
+
+## 사용 라이브러리
+- Retrofit2
+- RxJava3
+- RxAndroid
