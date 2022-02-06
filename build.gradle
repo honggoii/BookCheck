@@ -1,8 +1,16 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
+    ext {
+        // App dependencies
+        retrofitVersion = '2.9.0'
+        rxAndroid = '3.0.0'
+        rxJava = '3.0.0'
+    }
+
     repositories {
         google()
         mavenCentral()
+        maven { url "https://oss.jfrog.org/libs-snapshot" }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:7.0.3"

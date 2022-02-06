@@ -49,4 +49,12 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    // retrofit
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
+
+    // rxJava
+    implementation "io.reactivex.rxjava3:rxandroid:$rootProject.rxAndroid"
+    implementation "io.reactivex.rxjava3:rxjava:$rootProject.rxJava"
 }
