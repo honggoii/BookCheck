@@ -16,5 +16,7 @@
 
 ## 사용 라이브러리
 - Retrofit2
+- Okhttp3
+- Moshi
 - RxJava3
 - RxAndroid
