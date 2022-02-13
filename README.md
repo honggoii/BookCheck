@@ -20,3 +20,8 @@
 - Moshi
 - RxJava3
 - RxAndroid
+
+## 프로젝트를 통해 배운점
+- 공공API를 사용하기 위해서는 신청을 해야한다.
+- api를 사용하기 위한 key를 발급 받았을 때, githuhb에 해당 키가 노출되지 않도록 코드를 작성하기 위해서는 `local.properties`를 사용한다. 
+- 
