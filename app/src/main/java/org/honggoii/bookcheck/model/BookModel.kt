@@ -5,16 +5,12 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class BookModel(
-    var kwd: String, // 검색어
-    var category:String, // 카테고리
-    var pageNum:String, // 현재페이지
-    var pageSize:Int, // 쪽당출력건수 (기본 10건)
-    var sort:String, // 정렬
-    var total :Int,  // 검색건수
-    @SerializedName("title_info") var titleInfo: String, // 표제 리스트
-    @SerializedName("type_name") var typeName: String, // 자료유형
-    @SerializedName("author_info") var authorInfo: String, // 저작자
-    @SerializedName("pub_info") var pubInfo: String, // 발행자
-    var isbn: String, // ISBN
-    @SerializedName("call_no") var callNo: String, // 청구기호
+    val titleInfo: String, // 표제 리스트
+    val authorInfo: String, // 저작자
+    val pubInfo: String, // 발행자
+    val isbn: String, // ISBN
+    val callNo: String, // 청구기호
+    val kdcCode1s: String, // 동양서분류기호 대분류 코드
+    val kdcName1s: String, // 동양서분류기호 대분류 명칭
+    val classNo: String, // 청구기호
 )
