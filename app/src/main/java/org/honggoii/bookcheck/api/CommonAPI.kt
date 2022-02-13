@@ -2,30 +2,32 @@ package org.honggoii.bookcheck.api
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import io.reactivex.rxjava3.core.Single
 import okhttp3.OkHttpClient
-import okhttp3.internal.http2.Http2Reader.Companion.logger
 import okhttp3.logging.HttpLoggingInterceptor
-import org.honggoii.bookcheck.model.BookModel
+import org.honggoii.bookcheck.BuildConfig
+import org.honggoii.bookcheck.model.SearchResponse
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.*
+import java.net.URLDecoder
 
 interface CommonAPI {
+
     /**
      *
      */
-    @GET
-    fun getSearchResponse (
-        @Query("key") serviceKey: String = "fa4f7bd188ac2149a1a69bd316f47bd51d27ac7c9b5968f6aad5359ffc6b03b2",
+    @GET("search.do")
+    fun getSearch (
+        @Query("key") serviceKey: String = BuildConfig.SEARCH_API_KEY,
         @Query("pageNum") pageNum: Int = 1,
         @Query("pageSize") pageSize: Int = 10,
-        @Query("kwd") kwd: String = "%ED%86%A0%EC%A7%80"
-    ) : Call<BookModel>
+        @Query("kwd") kwd: String = URLDecoder.decode("토지", "UTF-8"),
+        @Query("apiType") apiType: String = "json",
+    ) : Call<SearchResponse>
 
     companion object {
-        private const val BASE_URL = "https://www.nl.go.kr/NL/search/openApi/search.do"
+        private const val BASE_URL = "https://www.nl.go.kr/NL/search/openApi/"
 
         val logger = HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BASIC }
 
@@ -37,14 +39,10 @@ interface CommonAPI {
             .add(KotlinJsonAdapterFactory())
             .build()
 
-        fun create(): CommonAPI {
-            return Retrofit.Builder()
+        val retrofit = Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .client(client)
-                .addConverterFactory(MoshiConverterFactory.create(moshi))
+                .addConverterFactory(MoshiConverterFactory.create(moshi).asLenient())
                 .build()
-                .create(CommonAPI::class.java)
         }
     }
-
-}
