@@ -13,8 +13,8 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class BookViewModel : ViewModel() {
-    private val _book = MutableLiveData<BookModel>()
-    val book: LiveData<BookModel>
+    private val _book = MutableLiveData<List<BookModel>>()
+    val book: LiveData<List<BookModel>>
         get() = _book
 
     fun getBookSearch() {
@@ -22,7 +22,7 @@ class BookViewModel : ViewModel() {
             object: Callback<SearchResponse> {
                 override fun onResponse(call: Call<SearchResponse>, response: Response<SearchResponse>) {
                     Log.e("MainActivity", "성공 ##### ${response.body()}")
-//                    _book.value = response.body()
+                    _book.value = response.body()?.result
                 }
 
                 override fun onFailure(call: Call<SearchResponse>, t: Throwable) {
