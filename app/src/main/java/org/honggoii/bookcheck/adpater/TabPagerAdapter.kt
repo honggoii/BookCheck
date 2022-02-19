@@ -1,13 +1,13 @@
-package org.honggoii.bookcheck
+package org.honggoii.bookcheck.adpater
 
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.ListFragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import org.honggoii.bookcheck.activity.MainActivity
 import org.honggoii.bookcheck.fragment.MainFragment
 import org.honggoii.bookcheck.fragment.ResultFragment
 
-class MyViewPagerAdapter(activity: MainActivity): FragmentStateAdapter(activity) {
+class TabPagerAdapter(activity: FragmentActivity): FragmentStateAdapter(activity) {
     val fragments: List<Fragment>
     init {
         fragments = listOf(MainFragment(), ListFragment(), ResultFragment())
