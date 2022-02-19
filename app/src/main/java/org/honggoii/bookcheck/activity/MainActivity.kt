@@ -29,24 +29,11 @@ class MainActivity : AppCompatActivity() {
         myViewModel.book.observe(this, {
 //            binding.textView.text = it.category
         })
-//        /* View Binding */
-//        val binding = ActivityMainBinding.inflate(layoutInflater)
-//        setContentView(binding.root)
-
 
         /* Toolbar */
         setSupportActionBar(binding.toolbar)
 
-//        /* ActionBarDrawerToggle 버튼 적용 */
-//        toggle = ActionBarDrawerToggle(this, binding.drawer, R.string.drawer_opened, R.string.drawer_closed)
-//        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-//        toggle.syncState()
-//
         createTabLayout () // 탭 레이아웃 생성하기
-
-//        /* 뷰 페이저 어댑터 */
-//        val adapter = MyViewPagerAdapter(this)
-//        binding.viewpager.adapter = adapter
     }
 
     private fun createTabLayout() {

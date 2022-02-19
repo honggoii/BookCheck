@@ -11,7 +11,7 @@ class MyAdater(val datas: MutableList<String>): RecyclerView.Adapter<RecyclerVie
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val binding = (holder as MyViewHolder).binding
-        binding.itemData.text = datas[position]
+        binding.title.text = datas[position]
     }
 
     override fun getItemCount(): Int = datas.size
