@@ -11,14 +11,15 @@ import org.honggoii.bookcheck.model.SearchResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.net.URLDecoder
 
 class BookViewModel : ViewModel() {
     private val _book = MutableLiveData<List<BookModel>>()
     val book: LiveData<List<BookModel>>
         get() = _book
 
-    fun getBookSearch() {
-        BookAPI.retrofitService.getSearch().enqueue(
+    fun getBookSearch(title: String?) {
+        BookAPI.retrofitService.getSearch(kwd= URLDecoder.decode(title, "UTF-8")).enqueue(
             object: Callback<SearchResponse> {
                 override fun onResponse(call: Call<SearchResponse>, response: Response<SearchResponse>) {
                     Log.e("MainActivity", "성공 ##### ${response.body()}")
