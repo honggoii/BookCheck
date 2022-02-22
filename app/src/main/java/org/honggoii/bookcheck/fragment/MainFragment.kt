@@ -6,14 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
-
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import org.honggoii.bookcheck.MyAdater
 import org.honggoii.bookcheck.R
+import org.honggoii.bookcheck.adpater.BookAdapter
 import org.honggoii.bookcheck.databinding.FragmentMainBinding
 import org.honggoii.bookcheck.viewmodel.BookViewModel
 
@@ -48,7 +47,7 @@ class MainFragment : Fragment() {
             datas.add("Item $i")
         }
         binding.recyclerView.layoutManager = LinearLayoutManager(binding.root.context)
-        binding.recyclerView.adapter = MyAdater(datas)
+        binding.recyclerView.adapter = BookAdapter(datas)
         binding.recyclerView.addItemDecoration(DividerItemDecoration(binding.root.context, LinearLayoutManager.VERTICAL))
 
         return binding.root
