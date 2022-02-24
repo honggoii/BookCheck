@@ -18,12 +18,13 @@ class BookViewModel : ViewModel() {
     val book: LiveData<List<BookModel>>
         get() = _book
 
-    fun getBookSearch(title: String?) {
-        BookAPI.retrofitService.getSearch(kwd= URLDecoder.decode(title, "UTF-8")).enqueue(
+    fun getBookSearch(query: String?) {
+        BookAPI.retrofitService.getSearch(query = URLDecoder.decode(query, "UTF-8")).enqueue(
             object: Callback<SearchResponse> {
                 override fun onResponse(call: Call<SearchResponse>, response: Response<SearchResponse>) {
                     Log.e("MainActivity", "성공 ##### ${response.body()}")
-                    _book.value = response.body()?.result
+//                    _book.value = response.body()?.result
+                    _book.value = response.body()?.items
                 }
 
                 override fun onFailure(call: Call<SearchResponse>, t: Throwable) {
