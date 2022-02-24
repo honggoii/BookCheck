@@ -10,10 +10,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import org.honggoii.bookcheck.R
 import org.honggoii.bookcheck.adpater.BookAdapter
 import org.honggoii.bookcheck.databinding.FragmentMainBinding
+import org.honggoii.bookcheck.model.BookModel
 import org.honggoii.bookcheck.viewmodel.BookViewModel
 
 class MainFragment : Fragment() {
@@ -41,16 +45,22 @@ class MainFragment : Fragment() {
             }
         })
 
-        // 테스트 데이터
-        val datas = mutableListOf<String>()
-        for (i in 1..100) {
-            datas.add("Item $i")
-        }
-        binding.recyclerView.layoutManager = LinearLayoutManager(binding.root.context)
-        binding.recyclerView.adapter = BookAdapter(datas)
-        binding.recyclerView.addItemDecoration(DividerItemDecoration(binding.root.context, LinearLayoutManager.VERTICAL))
+        myViewModel.book.observe(viewLifecycleOwner, {
+            // 테스트 데이터
+            val datas = it
+            val gridLayoutManager = GridLayoutManager(context, 2) // 2열
+            binding.recyclerView.layoutManager = gridLayoutManager
+            binding.recyclerView.adapter = BookAdapter(datas, Glide.with(this))
+//            binding.recyclerView.addItemDecoration(DividerItemDecoration(binding.root.context, LinearLayoutManager.VERTICAL))
+        })
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
     }
 
 }
