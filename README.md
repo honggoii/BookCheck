@@ -11,8 +11,8 @@
 - D : 읽은 책 삭제
 
 ## 사용한 Open API
-[네이버 오픈 API](https://developers.naver.com/docs/search/book/) : 2022년 2월 19일 승인 완료!
-[국립 중앙도서관](https://www.nl.go.kr/NL/contents/N31101030700.do) : 2022년 2월 8일 승인 완료!
+- [네이버 오픈 API](https://developers.naver.com/docs/search/book/) : 2022년 2월 19일 승인 완료!   
+- [국립 중앙도서관](https://www.nl.go.kr/NL/contents/N31101030700.do) : 2022년 2월 8일 승인 완료!
 
 ## 사용 라이브러리
 - Retrofit2
