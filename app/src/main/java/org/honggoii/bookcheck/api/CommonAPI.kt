@@ -25,6 +25,8 @@ interface CommonAPI {
         @Header("X-Naver-Client-Id") id: String = BuildConfig.SEARCH_API_CLIENT_ID,
         @Header("X-Naver-Client-Secret") pw: String = BuildConfig.SEARCH_API_CLIENT_SECRET,
         @Query("query") query: String,
+        @Query("start") start: Int,
+        @Query("display") display: Int = 20,
 //        @Query("key") serviceKey: String = BuildConfig.SEARCH_API_KEY,
 //        @Query("pageNum") pageNum: Int = 1,
 //        @Query("pageSize") pageSize: Int = 10,
