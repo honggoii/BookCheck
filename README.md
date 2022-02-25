@@ -12,7 +12,9 @@
 
 ## 사용한 Open API
 - [네이버 오픈 API](https://developers.naver.com/docs/search/book/) : 2022년 2월 19일 승인 완료!   
-- [국립 중앙도서관](https://www.nl.go.kr/NL/contents/N31101030700.do) : 2022년 2월 8일 승인 완료!
+  - 책의 표지를 보여주기 위해 해당 api 추가 
+- [국립 중앙도서관](https://www.nl.go.kr/NL/contents/N31101030700.do) : 2022년 2월 8일 승인 완료! 
+  - 응답 결과로 카테고리를 받을 수 있어서 선택한 api
 
 ## 사용 라이브러리
 - Retrofit2
