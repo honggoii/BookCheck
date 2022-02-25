@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="제목"
+        app:layout_constraintStart_toStartOf="@+id/image"
+        app:layout_constraintTop_toBottomOf="@+id/image" />
+
+    <TextView
+        android:id="@+id/titleContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="제목 자리"
+        app:layout_constraintStart_toStartOf="@+id/publisherContent"
+        app:layout_constraintTop_toTopOf="@+id/title" />
+
+    <TextView
+        android:id="@+id/author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="저자"
+        app:layout_constraintStart_toStartOf="@+id/title"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+    <TextView
+        android:id="@+id/authorContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="저자 자리"
+        app:layout_constraintStart_toStartOf="@+id/publisherContent"
+        app:layout_constraintTop_toTopOf="@+id/author" />
+    <TextView
+        android:id="@+id/publisher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="출판사"
+        app:layout_constraintStart_toStartOf="@+id/author"
+        app:layout_constraintTop_toBottomOf="@+id/author" />
+    <TextView
+        android:id="@+id/publisherContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="출판사 자리"
+        app:layout_constraintStart_toEndOf="@+id/publisher"
+        app:layout_constraintTop_toTopOf="@+id/publisher" />
+
+    <Button
+        android:id="@+id/positiveBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="네! 읽었어요"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintTop_toBottomOf="@+id/publisherContent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <Button
+        android:id="@+id/negativeBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="헉! 잘못 눌렀어요"
+        app:layout_constraintStart_toEndOf="@+id/positiveBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/positiveBtn"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

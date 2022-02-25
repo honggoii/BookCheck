@@ -1,11 +1,13 @@
 package org.honggoii.bookcheck.fragment
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -14,6 +16,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import org.honggoii.bookcheck.BookDialog
 import org.honggoii.bookcheck.R
 import org.honggoii.bookcheck.adpater.BookAdapter
 import org.honggoii.bookcheck.databinding.FragmentMainBinding
@@ -30,6 +33,12 @@ class MainFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
         myViewModel = ViewModelProvider(this).get(BookViewModel::class.java)
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         binding.searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
 
@@ -53,16 +62,20 @@ class MainFragment : Fragment() {
             val datas = it
             val gridLayoutManager = GridLayoutManager(context, 2) // 2열
             binding.recyclerView.layoutManager = gridLayoutManager
-            binding.recyclerView.adapter = BookAdapter(datas, Glide.with(this))
+            val adapter = BookAdapter(datas, Glide.with(this))
+            binding.recyclerView.adapter = adapter
 //            binding.recyclerView.addItemDecoration(DividerItemDecoration(binding.root.context, LinearLayoutManager.VERTICAL))
-
+            adapter.setOnItemClickListener(object: BookAdapter.OnItemClickListener {
+                override fun onItemClick(v: View, data: BookModel, position: Int) {
+                    val dialog = BookDialog(requireContext())
+                    dialog.setOnOKClickedListener{ content ->
+                        Log.e("######", "눌렸습니다")
+                        // 데이터 저장
+                    }
+                    dialog.start(data.title, data.author, data.publisher)
+                }
+            })
         })
-
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
         binding.recyclerView.addOnScrollListener(object: RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -80,6 +93,7 @@ class MainFragment : Fragment() {
                 }
             }
         })
+
     }
 
 }
