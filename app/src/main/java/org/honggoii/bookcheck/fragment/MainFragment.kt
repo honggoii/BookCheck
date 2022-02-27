@@ -1,22 +1,20 @@
 package org.honggoii.bookcheck.fragment
 
-import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
-import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import org.honggoii.bookcheck.BookDialog
+import org.honggoii.bookcheck.Database.DBHelper
 import org.honggoii.bookcheck.R
 import org.honggoii.bookcheck.adpater.BookAdapter
 import org.honggoii.bookcheck.databinding.FragmentMainBinding
@@ -69,9 +67,16 @@ class MainFragment : Fragment() {
                 override fun onItemClick(v: View, data: BookModel, position: Int) {
                     val dialog = BookDialog(requireContext())
                     dialog.setOnPositiveBtnClickedListener{ content ->
-                        Log.e("######", "눌렸습니다")
                         // 데이터 저장
                         myViewModel.getMyBook(data.isbn.substring(data.isbn.length-13))
+
+                        // Gets the data repository in write mode
+                        DBHelper(requireContext()).writableDatabase.execSQL(
+                            "insert into User (title, image) values (?, ?)",
+                            arrayOf(data.title, data.image)
+                        )
+
+                        Log.e("######", "DB 저장???")
                     }
                     dialog.start(data.image, data.title, data.author, data.publisher)
                 }
