@@ -68,11 +68,12 @@ class MainFragment : Fragment() {
             adapter.setOnItemClickListener(object: BookAdapter.OnItemClickListener {
                 override fun onItemClick(v: View, data: BookModel, position: Int) {
                     val dialog = BookDialog(requireContext())
-                    dialog.setOnOKClickedListener{ content ->
+                    dialog.setOnPositiveBtnClickedListener{ content ->
                         Log.e("######", "눌렸습니다")
                         // 데이터 저장
+                        myViewModel.getMyBook(data.isbn.substring(data.isbn.length-13))
                     }
-                    dialog.start(data.title, data.author, data.publisher)
+                    dialog.start(data.image, data.title, data.author, data.publisher)
                 }
             })
         })

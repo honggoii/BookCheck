@@ -2,12 +2,16 @@ package org.honggoii.bookcheck
 
 import android.app.Dialog
 import android.content.Context
+import android.media.Image
 import android.view.Window
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 
 class BookDialog(context: Context) {
     private val dialog = Dialog(context)
+    private lateinit var image : ImageView
     private lateinit var title : TextView
     private lateinit var author : TextView
     private lateinit var publisher : TextView
@@ -15,13 +19,18 @@ class BookDialog(context: Context) {
     private lateinit var negativeBtn : Button
     private lateinit var listener : PositiveBtnClickedListener
 
-    fun start(titleContent : String, authorContent: String, publisherContent: String) {
+    fun start(imageContent : String, titleContent : String, authorContent: String, publisherContent: String) {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)   //타이틀바 제거
         dialog.setContentView(R.layout.dialog_book)
         dialog.setCancelable(false)    // 다이얼로그의 바깥 화면을 눌렀을 때 다이얼로그가 닫히지 않도록 함
 
+        image = dialog.findViewById(R.id.image)
+        Glide.with(image)
+            .load(imageContent)
+            .override(300, 300)
+            .into(image)
         title = dialog.findViewById(R.id.titleContent)
-        title.text = titleContent
+        title.text = titleContent.replace("<b>", "").replace("</b>", "")
         author = dialog.findViewById(R.id.authorContent)
         author.text = authorContent
         publisher = dialog.findViewById(R.id.publisherContent)
@@ -42,7 +51,7 @@ class BookDialog(context: Context) {
         dialog.show()
     }
 
-    fun setOnOKClickedListener(listener: (String) -> Unit) {
+    fun setOnPositiveBtnClickedListener(listener: (String) -> Unit) {
         this.listener = object: PositiveBtnClickedListener {
             override fun onPositiveBtnClicked(content: String) {
                 listener(content)
