@@ -13,6 +13,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 import retrofit2.http.Url
+import java.util.concurrent.TimeUnit
 
 /**
  * 카테고리를 분류하기 위해 국립중앙도서관 API를 호출합니다.
@@ -34,6 +35,9 @@ interface MyBookAPI {
 
         val client = OkHttpClient.Builder()
             .addInterceptor(logger)
+            .connectTimeout(100, TimeUnit.SECONDS)
+            .readTimeout(100,TimeUnit.SECONDS)
+            .writeTimeout(100,TimeUnit.SECONDS)
             .build()
 
         val moshi = Moshi.Builder()

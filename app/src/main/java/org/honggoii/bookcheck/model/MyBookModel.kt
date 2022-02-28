@@ -12,4 +12,6 @@ data class MyBookModel(
     val isbn: String, // isbn
     val kdcCode1s: String, // 대분류 코드
     val kdcName1s: String, // 대분류 명칭
+
+    var image: String = "", // 책 표지
 )
