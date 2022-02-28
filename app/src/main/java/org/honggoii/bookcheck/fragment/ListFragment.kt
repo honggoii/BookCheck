@@ -44,8 +44,7 @@ class ListFragment : Fragment() {
             val adapter = MyBookAdapter(datas, Glide.with(this))
             binding.recyclerView.adapter = adapter
         })
-
-
+        
         Log.e("Fragement Life Cycle", "onViewCreated")
     }
 

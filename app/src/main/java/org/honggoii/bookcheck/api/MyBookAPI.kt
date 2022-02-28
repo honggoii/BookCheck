@@ -19,6 +19,7 @@ import java.util.concurrent.TimeUnit
  * 카테고리를 분류하기 위해 국립중앙도서관 API를 호출합니다.
  */
 interface MyBookAPI {
+
     @GET("search.do")
     fun getMyBook (
         @Query("key") certKey: String = BuildConfig.SEARCH_API_KEY,
