@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.tabs.TabLayoutMediator
 import org.honggoii.bookcheck.R
 import org.honggoii.bookcheck.adpater.TabPagerAdapter
@@ -20,20 +19,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        myViewModel = ViewModelProvider(this).get(BookViewModel::class.java)
-
-//        binding.button.setOnClickListener {
-//            myViewModel.getBookSearch()
-//        }
-
-        myViewModel.book.observe(this, {
-//            binding.textView.text = it.category
-        })
 
         /* Toolbar */
         setSupportActionBar(binding.toolbar)
 
         createTabLayout () // 탭 레이아웃 생성하기
+
     }
 
     private fun createTabLayout() {
