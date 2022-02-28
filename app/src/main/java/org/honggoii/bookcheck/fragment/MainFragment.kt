@@ -14,12 +14,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import org.honggoii.bookcheck.BookDialog
-import org.honggoii.bookcheck.Database.DBHelper
+import org.honggoii.bookcheck.Database.MyBookDatabase
 import org.honggoii.bookcheck.R
 import org.honggoii.bookcheck.adpater.BookAdapter
 import org.honggoii.bookcheck.databinding.FragmentMainBinding
 import org.honggoii.bookcheck.model.BookModel
 import org.honggoii.bookcheck.viewmodel.BookViewModel
+import org.honggoii.bookcheck.viewmodel.BookViewModelFactory
 
 class MainFragment : Fragment() {
 
@@ -30,7 +31,14 @@ class MainFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
-        myViewModel = ViewModelProvider(this).get(BookViewModel::class.java)
+
+        val application = requireNotNull(this.activity).application
+        val dataSource = MyBookDatabase.getInstance(application).myBookDao()
+        val viewModelFactory = BookViewModelFactory(dataSource, application)
+        myViewModel = ViewModelProvider(this, viewModelFactory).get(BookViewModel::class.java)
+
+        binding.setLifecycleOwner(this)
+        binding.viewModel = myViewModel
 
         return binding.root
     }
@@ -68,15 +76,7 @@ class MainFragment : Fragment() {
                     val dialog = BookDialog(requireContext())
                     dialog.setOnPositiveBtnClickedListener{ content ->
                         // 데이터 저장
-                        myViewModel.getMyBook(data.isbn.substring(data.isbn.length-13))
-
-                        // Gets the data repository in write mode
-                        DBHelper(requireContext()).writableDatabase.execSQL(
-                            "insert into User (title, image) values (?, ?)",
-                            arrayOf(data.title, data.image)
-                        )
-
-                        Log.e("######", "DB 저장???")
+                        myViewModel.getMyBook(data.isbn.substring(data.isbn.length-13), data.image)
                     }
                     dialog.start(data.image, data.title, data.author, data.publisher)
                 }
@@ -99,7 +99,6 @@ class MainFragment : Fragment() {
                 }
             }
         })
-
     }
 
 }
