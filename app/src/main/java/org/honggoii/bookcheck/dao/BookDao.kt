@@ -6,6 +6,7 @@ import org.honggoii.bookcheck.entity.MyBook
 
 @Dao
 interface MyBookDao {
+    
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(myBook: MyBook?)
 

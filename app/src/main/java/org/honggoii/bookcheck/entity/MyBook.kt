@@ -7,10 +7,10 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "my_book")
 data class MyBook(
     @ColumnInfo(name = "title")
-    val title: String = "",
+    val title: String = "", // 책 제목
 
     @ColumnInfo(name = "image")
-    val image: String = "",
+    val image: String = "", // 책 표지
 
     @ColumnInfo(name = "code")
     val code: String = "", // 분류 코드
