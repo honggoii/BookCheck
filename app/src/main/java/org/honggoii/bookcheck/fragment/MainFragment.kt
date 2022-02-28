@@ -76,7 +76,7 @@ class MainFragment : Fragment() {
                     val dialog = BookDialog(requireContext())
                     dialog.setOnPositiveBtnClickedListener{ content ->
                         // 데이터 저장
-                        myViewModel.getMyBook(data.isbn.substring(data.isbn.length-13), data.image)
+                        myViewModel.getMyBook(data.isbn.substring(data.isbn.length-13), data)
                     }
                     dialog.start(data.image, data.title, data.author, data.publisher)
                 }
