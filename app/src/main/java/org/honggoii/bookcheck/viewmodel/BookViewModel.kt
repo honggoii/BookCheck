@@ -22,10 +22,6 @@ class BookViewModel(val database: MyBookDao, application: Application) : Android
     val book: LiveData<List<BookModel>>
         get() = _book
 
-//    private val _myBook = MutableLiveData<MyBookModel>()
-//    val myBook: LiveData<MyBookModel>
-//        get() = _myBook
-
     val myBook: LiveData<List<MyBook>>
         get() = database.getAll()
 
@@ -51,8 +47,6 @@ class BookViewModel(val database: MyBookDao, application: Application) : Android
                 override fun onResponse(call: Call<MyBookResponse>, response: Response<MyBookResponse>) {
                     Log.e("MainActivity", "중앙 도서관 api 호출 성공 ##### ${response.body()}")
                     val tmp = response.body()?.result?.get(0)
-//                    _myBook.value = response.body()?.result?.get(0)
-//                    _myBook.value?.image = image
                     viewModelScope.launch {
                         val book = tmp?.let { MyBook(it.titleInfo,image,it.kdcCode1s,it.kdcName1s) }
                         database.insert(book)

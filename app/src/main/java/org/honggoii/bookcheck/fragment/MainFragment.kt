@@ -90,9 +90,6 @@ class MainFragment : Fragment() {
                 val totalItemCount = (recyclerView.layoutManager as LinearLayoutManager).itemCount - 1
                 val lastItemPosition = (recyclerView.layoutManager as LinearLayoutManager).findLastCompletelyVisibleItemPosition()
 
-                Log.e("##### totalItemCount", "${totalItemCount}")
-                Log.e("##### lastItem", "${lastItemPosition}")
-
                 if ((totalItemCount == lastItemPosition) && start <= 1000) {
                     start += 10
                     myViewModel.getBookSearch(query, start)
