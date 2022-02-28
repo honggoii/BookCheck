@@ -11,10 +11,8 @@ import org.honggoii.bookcheck.databinding.ActivityMainBinding
 import org.honggoii.bookcheck.viewmodel.BookViewModel
 
 class MainActivity : AppCompatActivity() {
-    lateinit var toggle: ActionBarDrawerToggle
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var myViewModel: BookViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
