@@ -63,6 +63,14 @@ class MainFragment : Fragment() {
             }
         })
 
+        binding.searchView.setOnCloseListener(object: SearchView.OnCloseListener {
+            override fun onClose(): Boolean {
+                binding.searchView.clearFocus()
+                return true
+            }
+
+        })
+
         myViewModel.book.observe(viewLifecycleOwner, {
             // 테스트 데이터
             val datas = it
