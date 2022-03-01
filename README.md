@@ -7,7 +7,7 @@
 ## 기능
 - C : 읽은 책 등록
 - R : 읽은 책 조회
-- U : 읽은 책 수정
+- U : 읽은 책 수정 
 - D : 읽은 책 삭제
 
 ## 사용한 Open API
@@ -22,6 +22,8 @@
 - Okhttp3
 - RxJava3
 - RxAndroid
+- [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart) :
+
 
 ## 프로젝트를 통해 배운점
 - 공공API를 사용하기 위해서는 신청을 해야한다.
