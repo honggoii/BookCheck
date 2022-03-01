@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         val adapter = TabPagerAdapter(this)
         binding.viewpager.adapter = adapter
 
-        val tabText = arrayOf(getString(R.string.search), getString(R.string.read), getString(R.string.classification))
+        val tabText = arrayOf(getString(R.string.search), getString(R.string.classification), getString(R.string.read))
         // 탭과 선택된 프래그먼트 동기화
         TabLayoutMediator(binding.tabLayout, binding.viewpager) {tab, position ->
             tab.text = tabText[position]

@@ -10,7 +10,7 @@ import org.honggoii.bookcheck.fragment.ResultFragment
 class TabPagerAdapter(activity: FragmentActivity): FragmentStateAdapter(activity) {
     val fragments: List<Fragment>
     init {
-        fragments = listOf(MainFragment(), ListFragment(), ResultFragment())
+        fragments = listOf(MainFragment(), ResultFragment(), ListFragment())
     }
 
     override fun getItemCount(): Int = fragments.size
