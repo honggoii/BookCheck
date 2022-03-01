@@ -61,14 +61,14 @@ class BookViewModel(val database: MyBookDao, application: Application) : Android
         )
     }
 
-    fun getMyBook(isbn: String, book: BookModel) {
-        BookAPI.retrofitService2.getMyBook(isbn = isbn).enqueue(
+    fun getMyBook(kwd: String, isbn: String, book: BookModel) {
+        BookAPI.retrofitService2.getMyBook(kwd = kwd, isbn = isbn).enqueue(
             object: Callback<MyBookResponse> {
                 override fun onResponse(call: Call<MyBookResponse>, response: Response<MyBookResponse>) {
                     Log.e("MainActivity", "중앙 도서관 api 호출 성공 ##### ${response.body()}")
                     val tmp = response.body()?.result?.get(0)
                     viewModelScope.launch {
-                        val book = tmp?.let { MyBook(book.title, book.image, it.kdcCode1s,it.kdcName1s) }
+                        val book = tmp?.let { MyBook(book.title, book.image, it.kdcCode1s, it.kdcName1s) }
                         database.insert(book)
                     }
                 }

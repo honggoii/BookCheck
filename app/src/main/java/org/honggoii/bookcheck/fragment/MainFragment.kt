@@ -83,8 +83,7 @@ class MainFragment : Fragment() {
                 override fun onItemClick(v: View, data: BookModel, position: Int) {
                     val dialog = BookDialog(requireContext())
                     dialog.setOnPositiveBtnClickedListener{ content ->
-                        // 데이터 저장
-                        myViewModel.getMyBook(data.isbn.substring(data.isbn.length-13), data)
+                        myViewModel.getMyBook(data.title, data.isbn.substring(data.isbn.length-13), data)
                     }
                     dialog.start(data.image, data.title, data.author, data.publisher)
                 }

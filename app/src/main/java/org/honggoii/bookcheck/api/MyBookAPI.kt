@@ -24,6 +24,7 @@ interface MyBookAPI {
     fun getMyBook (
         @Query("key") certKey: String = BuildConfig.SEARCH_API_KEY,
         @Query("detailSearch") detailSearch: String = "true",
+        @Query("kwd") kwd: String,
         @Query("isbnOp") isbnOp: String = "isbn",
         @Query("isbn") isbn: String,
         @Query("apiType") apiType: String = "json",
