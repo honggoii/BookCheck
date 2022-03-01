@@ -25,6 +25,26 @@ class BookViewModel(val database: MyBookDao, application: Application) : Android
     val myBook: LiveData<List<MyBook>>
         get() = database.getAll()
 
+    private val _code = MutableLiveData<List<Float>>()
+    val code: LiveData<List<Float>>
+        get() = _code
+
+    fun getMyBookCode() {
+        viewModelScope.launch {
+            _code.value = listOf(
+                database.getCode1(),
+                database.getCode2(),
+                database.getCode3(),
+                database.getCode4(),
+                database.getCode5(),
+                database.getCode6(),
+                database.getCode7(),
+                database.getCode8(),
+                database.getCode9(),
+            )
+        }
+    }
+
     fun getBookSearch(query: String?, start: Int) {
         BookAPI.retrofitService.getSearch(query = URLDecoder.decode(query, "UTF-8"), start = start).enqueue(
             object: Callback<SearchResponse> {
@@ -59,5 +79,4 @@ class BookViewModel(val database: MyBookDao, application: Application) : Android
             }
         )
     }
-
 }

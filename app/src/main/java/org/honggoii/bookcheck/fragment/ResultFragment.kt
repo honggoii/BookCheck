@@ -2,6 +2,7 @@ package org.honggoii.bookcheck.fragment
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -50,12 +51,6 @@ class ResultFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val dataSet = RadarDataSet(dataValue(), "DATA")
-        dataSet.color = Color.BLUE
-
-        val data = RadarData()
-        data.addDataSet(dataSet)
         val labels = arrayOf(
             getString(R.string.Code1),
             getString(R.string.Code2),
@@ -69,28 +64,38 @@ class ResultFragment : Fragment() {
         )
         val xAxis: XAxis = binding.radarChart.getXAxis()
         xAxis.valueFormatter = IndexAxisValueFormatter(labels)
-        binding.radarChart.setData(data)
 
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        val dataSet = RadarDataSet(dataValue(), "DATA")
+        dataSet.color = Color.BLUE
+
+        val data = RadarData()
+        data.addDataSet(dataSet)
+        binding.radarChart.setData(data)
+    }
+
+
     private fun dataValue(): ArrayList<RadarEntry>? {
         val dataVals: ArrayList<RadarEntry> = ArrayList()
-        dataVals.add(RadarEntry(10F))
-        dataVals.add(RadarEntry(20F))
-        dataVals.add(RadarEntry(10F))
-        dataVals.add(RadarEntry(20F))
-        dataVals.add(RadarEntry(10F))
-        dataVals.add(RadarEntry(20F))
-        dataVals.add(RadarEntry(10F))
-        dataVals.add(RadarEntry(20F))
-        dataVals.add(RadarEntry(10F))
-//        dataVals.add(RadarEntry(schoolList.size()))
-//        dataVals.add(RadarEntry(academyList.size()))
-//        dataVals.add(RadarEntry(subwayList.size()))
-//        dataVals.add(RadarEntry(bankList.size()))
-//        dataVals.add(RadarEntry(hospitalList.size()))
-//        dataVals.add(RadarEntry(pharmacyList.size()))
-//        dataVals.add(RadarEntry(cafeList.size()))
+
+        binding.viewModel?.getMyBookCode()
+
+        binding.viewModel?.code?.observe(viewLifecycleOwner, {
+            dataVals.clear()
+            dataVals.add(RadarEntry(it.get(0)))
+            dataVals.add(RadarEntry(it.get(1)))
+            dataVals.add(RadarEntry(it.get(2)))
+            dataVals.add(RadarEntry(it.get(3)))
+            dataVals.add(RadarEntry(it.get(4)))
+            dataVals.add(RadarEntry(it.get(5)))
+            dataVals.add(RadarEntry(it.get(6)))
+            dataVals.add(RadarEntry(it.get(7)))
+            dataVals.add(RadarEntry(it.get(8)))
+        })
         return dataVals
     }
 
