@@ -32,6 +32,7 @@ class BookViewModel(val database: MyBookDao, application: Application) : Android
     fun getMyBookCode() {
         viewModelScope.launch {
             _code.value = listOf(
+                database.getCode0(),
                 database.getCode1(),
                 database.getCode2(),
                 database.getCode3(),

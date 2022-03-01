@@ -22,6 +22,9 @@ interface MyBookDao {
     @Query("DELETE FROM my_book")
     suspend fun deleteAll()
 
+    @Query("SELECT COUNT(*) FROM my_book WHERE code == '0'")
+    suspend fun getCode0(): Float
+
     @Query("SELECT COUNT(*) FROM my_book WHERE code == '1'")
     suspend fun getCode1(): Float
 

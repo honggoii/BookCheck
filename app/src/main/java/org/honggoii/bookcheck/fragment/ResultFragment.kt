@@ -52,6 +52,7 @@ class ResultFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val labels = arrayOf(
+            getString(R.string.Code0),
             getString(R.string.Code1),
             getString(R.string.Code2),
             getString(R.string.Code3),
@@ -95,6 +96,7 @@ class ResultFragment : Fragment() {
             dataVals.add(RadarEntry(it.get(6)))
             dataVals.add(RadarEntry(it.get(7)))
             dataVals.add(RadarEntry(it.get(8)))
+            dataVals.add(RadarEntry(it.get(9)))
         })
         return dataVals
     }
