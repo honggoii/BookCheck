@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         /* Toolbar */
         setSupportActionBar(binding.toolbar)
 
+        binding.viewpager.isUserInputEnabled = false
         createTabLayout () // 탭 레이아웃 생성하기
 
     }
