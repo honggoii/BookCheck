@@ -22,7 +22,7 @@
 - Okhttp3
 - RxJava3
 - RxAndroid
-- [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart)
+- [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart) (document: https://weeklycoding.com/mpandroidchart-documentation/)
 
 
 ## 프로젝트를 통해 배운점
