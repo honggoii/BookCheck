@@ -2,56 +2,39 @@ package org.honggoii.bookcheck.fragment
 
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.github.mikephil.charting.charts.RadarChart
-import com.github.mikephil.charting.data.RadarDataSet
+import com.github.mikephil.charting.data.PieData
+import com.github.mikephil.charting.data.PieDataSet
+import com.github.mikephil.charting.data.PieEntry
+import com.github.mikephil.charting.formatter.PercentFormatter
+import com.github.mikephil.charting.utils.ColorTemplate
 import org.honggoii.bookcheck.Database.MyBookDatabase
 import org.honggoii.bookcheck.R
-import org.honggoii.bookcheck.databinding.FragmentListBinding
-import org.honggoii.bookcheck.databinding.FragmentMainBinding
-import org.honggoii.bookcheck.databinding.FragmentResultBinding
-import org.honggoii.bookcheck.databinding.RadarChartBinding
+import org.honggoii.bookcheck.databinding.PieChartBinding
 import org.honggoii.bookcheck.viewmodel.BookViewModel
 import org.honggoii.bookcheck.viewmodel.BookViewModelFactory
-import com.github.mikephil.charting.data.RadarEntry
-import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
-
-import com.github.mikephil.charting.components.XAxis
-
-import com.github.mikephil.charting.data.RadarData
-
-
-
-
-
 
 
 class ResultFragment : Fragment() {
 
-    private lateinit var binding: RadarChartBinding
+    private lateinit var binding: PieChartBinding
     private lateinit var myViewModel: BookViewModel
 
+    private lateinit var label: List<String>
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.radar_chart, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.pie_chart, container, false)
         val application = requireNotNull(this.activity).application
         val dataSource = MyBookDatabase.getInstance(application).myBookDao()
         val viewModelFactory = BookViewModelFactory(dataSource, application)
         myViewModel = ViewModelProvider(this, viewModelFactory).get(BookViewModel::class.java)
 
-        binding.setLifecycleOwner(this)
-        binding.viewModel = myViewModel
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val labels = arrayOf(
+        label = listOf(
             getString(R.string.Code0),
             getString(R.string.Code1),
             getString(R.string.Code2),
@@ -63,42 +46,48 @@ class ResultFragment : Fragment() {
             getString(R.string.Code8),
             getString(R.string.Code9),
         )
-        val xAxis: XAxis = binding.radarChart.getXAxis()
-        xAxis.valueFormatter = IndexAxisValueFormatter(labels)
 
+        binding.lifecycleOwner = this
+        binding.viewModel = myViewModel
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.viewModel?.getMyBookCode()
     }
 
     override fun onResume() {
         super.onResume()
+        val entries:ArrayList<PieEntry> = ArrayList()
 
-        val dataSet = RadarDataSet(dataValue(), "DATA")
-        dataSet.color = Color.BLUE
-
-        val data = RadarData()
-        data.addDataSet(dataSet)
-        binding.radarChart.setData(data)
-    }
-
-
-    private fun dataValue(): ArrayList<RadarEntry>? {
-        val dataVals: ArrayList<RadarEntry> = ArrayList()
-
-        binding.viewModel?.getMyBookCode()
-
+        /* 데이터베이스에서 가져오기 */
         binding.viewModel?.code?.observe(viewLifecycleOwner, {
-            dataVals.clear()
-            dataVals.add(RadarEntry(it.get(0)))
-            dataVals.add(RadarEntry(it.get(1)))
-            dataVals.add(RadarEntry(it.get(2)))
-            dataVals.add(RadarEntry(it.get(3)))
-            dataVals.add(RadarEntry(it.get(4)))
-            dataVals.add(RadarEntry(it.get(5)))
-            dataVals.add(RadarEntry(it.get(6)))
-            dataVals.add(RadarEntry(it.get(7)))
-            dataVals.add(RadarEntry(it.get(8)))
-            dataVals.add(RadarEntry(it.get(9)))
+            it.forEachIndexed { index, value ->
+                if (value.toInt() != 0) { // 0%인 분류는 제외
+                    entries.add(PieEntry(value, label[index]))
+                }
+            }
         })
-        return dataVals
-    }
 
+        /* 차트 색상 */
+        val colors: ArrayList<Int> = ArrayList()
+        for (c in ColorTemplate.VORDIPLOM_COLORS) colors.add(c)
+        for (c in ColorTemplate.JOYFUL_COLORS) colors.add(c)
+        for (c in ColorTemplate.COLORFUL_COLORS) colors.add(c)
+        for (c in ColorTemplate.LIBERTY_COLORS) colors.add(c)
+        for (c in ColorTemplate.PASTEL_COLORS) colors.add(c)
+
+        /* 차트에 데이터 + 색상 최종 입히기 */
+        val dataSet = PieDataSet(entries, "")
+        dataSet.colors = colors
+        val data = PieData(dataSet)
+        data.setValueFormatter(PercentFormatter())
+        data.setValueTextSize(11f)
+        data.setValueTextColor(Color.WHITE)
+        binding.chart.data = data
+        binding.chart.setUsePercentValues(true)
+        binding.chart.description.isEnabled = false;
+        binding.chart.invalidate()
+    }
 }
