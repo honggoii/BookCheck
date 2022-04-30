@@ -2,14 +2,11 @@ package org.honggoii.bookcheck.adpater
 
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
-import org.honggoii.bookcheck.BookItemViewHolder
 import org.honggoii.bookcheck.databinding.BookItemViewBinding
 import org.honggoii.bookcheck.entity.MyBook
-import org.honggoii.bookcheck.model.BookModel
 
 class MyBookAdapter(val datas: List<MyBook>, private val glideRequestManager: RequestManager) : RecyclerView.Adapter<BookItemViewHolder>() {
 //    interface OnItemClickListener{ // 인터페이스

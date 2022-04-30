@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
-import org.honggoii.bookcheck.BookItemViewHolder
 import org.honggoii.bookcheck.databinding.BookItemViewBinding
 import org.honggoii.bookcheck.model.BookModel
 
