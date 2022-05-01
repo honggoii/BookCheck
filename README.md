@@ -25,36 +25,36 @@
 - [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart) (document: https://weeklycoding.com/mpandroidchart-documentation/)
 
 ## 프로젝트 구조
-ㄴ acitivty
-    ㄴ MainActivity : 3개의 Fragment를 담을 액티비티
-ㄴ adapter
-    ㄴ BookAdapter : 책 검색 리사이클러뷰에서 사용하는 어댑터
-    ㄴ MyBookAdapter : 읽은 책 리사이클러뷰에서 사용하는 어댑터
-    ㄴ TabPagerAdapter : ViewPager에서 사용하는 어댑터
-ㄴ api
-    ㄴ CommonAPI : 네이버 도서 검색 API
-    ㄴ MyBookAPI : 국립 중앙 도서관 API
-ㄴ dao
-    ㄴ BookDao : 데이터베이스를 사용하기 위한 쿼리 작성
-ㄴ Database
-    ㄴ BookDatabase : Room 사용
-ㄴ entity
-    ㄴ MyBook : 데이터베이스 테이블 정의
-ㄴ fragment
-    ㄴ ListFragment : 읽은 책 탭 화면
-    ㄴ MainFragment : 책 검색 탭 화면
-    ㄴ ResultFragment : 책 분류 탭 화면
-ㄴ model
-    ㄴ BookModel : 네이버 도서 검색 API Response
-    ㄴ MyBookModel : 국립 중앙 도서관 검색 API Response
-    ㄴ MyBookResponse : 국립 중앙도서관 API Response
-    ㄴ SearchResponse : 네이버 도서 검색 API Response
-ㄴ Repository
-ㄴ viewmodel
-    ㄴ BookViewModel 
-    ㄴ BookViewModelFactory
-- BookAPI : retrofit2 세팅
-- BookDialog : 팝업창
+ㄴ acitivty    
+&nbsp;&nbsp;&nbsp;&nbsp;ㄴ MainActivity : 3개의 Fragment를 담을 액티비티     
+ㄴ adapter    
+&nbsp;&nbsp;&nbsp;&nbsp;ㄴ BookAdapter : 책 검색 리사이클러뷰에서 사용하는 어댑터    
+&nbsp;&nbsp;&nbsp;&nbsp;ㄴ MyBookAdapter : 읽은 책 리사이클러뷰에서 사용하는 어댑터   
+&nbsp;&nbsp;&nbsp;&nbsp;ㄴ TabPagerAdapter : ViewPager에서 사용하는 어댑터     
+ㄴ api   
+&nbsp;&nbsp;&nbsp;&nbsp;ㄴ CommonAPI : 네이버 도서 검색 API    
+&nbsp;&nbsp;&nbsp;&nbsp;ㄴ MyBookAPI : 국립 중앙 도서관 API   
+ㄴ dao     
+&nbsp;&nbsp;&nbsp;&nbsp;ㄴ BookDao : 데이터베이스를 사용하기 위한 쿼리 작성   
+ㄴ Database     
+&nbsp;&nbsp;&nbsp;&nbsp;ㄴ BookDatabase : Room 사용    
+ㄴ entity    
+&nbsp;&nbsp;&nbsp;&nbsp;ㄴ MyBook : 데이터베이스 테이블 정의   
+ㄴ fragment      
+&nbsp;&nbsp;&nbsp;&nbsp;ㄴ ListFragment : 읽은 책 탭 화면        
+&nbsp;&nbsp;&nbsp;&nbsp;ㄴ MainFragment : 책 검색 탭 화면    
+&nbsp;&nbsp;&nbsp;&nbsp;ㄴ ResultFragment : 책 분류 탭 화면     
+ㄴ model     
+&nbsp;&nbsp;&nbsp;&nbsp;ㄴ BookModel : 네이버 도서 검색 API Response    
+&nbsp;&nbsp;&nbsp;&nbsp;ㄴ MyBookModel : 국립 중앙 도서관 검색 API Response    
+&nbsp;&nbsp;&nbsp;&nbsp;ㄴ MyBookResponse : 국립 중앙도서관 API Response    
+&nbsp;&nbsp;&nbsp;&nbsp;ㄴ SearchResponse : 네이버 도서 검색 API Response    
+ㄴ Repository   
+ㄴ viewmodel    
+&nbsp;&nbsp;&nbsp;&nbsp;ㄴ BookViewModel    
+&nbsp;&nbsp;&nbsp;&nbsp;ㄴ BookViewModelFactory   
+- BookAPI : retrofit2 세팅   
+- BookDialog : 팝업창   
     
 
 
