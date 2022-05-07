@@ -2,7 +2,7 @@
 읽은 책을 기록하는 앱
 
 ## 개발 이유
-문학(800)만 읽는 것 같아, 다양한 분야의 책을 읽고 싶었다. 십진분류법에 따라 통계를 내주어 평소 내가 어떤 분야의 책을 읽는지 확인을 하고 싶어 만든 앱이다.
+문학(800)만 읽는 것 같아, 다양한 분야의 책을 읽고 싶었습니다. 십진분류법에 따라 통계를 내주어 평소 내가 어떤 분야의 책을 읽는지 확인을 하고 싶어 만든 앱입니다.
 
 ## 기능
 - C : 읽은 책 등록
@@ -19,9 +19,6 @@
 ## 사용 라이브러리
 - Retrofit2
 - Moshi
-- Okhttp3
-- RxJava3
-- RxAndroid
 - [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart) (document: https://weeklycoding.com/mpandroidchart-documentation/)
 
 ## 프로젝트 구조
