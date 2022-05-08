@@ -17,8 +17,15 @@
   - 응답 결과로 카테고리를 받을 수 있어서 선택한 api
 
 ## 사용 라이브러리
-- Retrofit2
+- Jetpack
+  - RecyclerView
+  - ConstraintLayout
+  - ViewPager2
+  - Room
+  - LiveData
+- Retrofit2 (Network)
 - Moshi
+- Glide
 - [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart) (document: https://weeklycoding.com/mpandroidchart-documentation/)
 
 ## 프로젝트 구조
