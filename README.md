@@ -23,6 +23,7 @@
   - ViewPager2
   - Room
   - LiveData
+  - ViewModel
 - Retrofit2 (Network)
 - Moshi
 - Glide
