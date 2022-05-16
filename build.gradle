@@ -7,6 +7,7 @@ buildscript {
         okhttpLoggingVersion = '4.7.2'
         GlideVersion = '4.13.0'
         RoomVersion = "2.4.2"
+        CoroutineVersion = "1.6.1"
         rxAndroid = '3.0.0'
         rxJava = '3.0.0'
     }
