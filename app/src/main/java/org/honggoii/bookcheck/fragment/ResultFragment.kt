@@ -62,13 +62,13 @@ class ResultFragment : Fragment() {
         val entries:ArrayList<PieEntry> = ArrayList()
 
         /* 데이터베이스에서 가져오기 */
-        binding.viewModel?.code?.observe(viewLifecycleOwner, {
+        binding.viewModel?.code?.observe(viewLifecycleOwner) {
             it.forEachIndexed { index, value ->
                 if (value.toInt() != 0) { // 0%인 분류는 제외
                     entries.add(PieEntry(value, label[index]))
                 }
             }
-        })
+        }
 
         /* 차트 색상 */
         val colors: ArrayList<Int> = ArrayList()

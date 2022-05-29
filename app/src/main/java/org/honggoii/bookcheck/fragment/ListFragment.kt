@@ -37,14 +37,14 @@ class ListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.viewModel?.myBook?.observe(viewLifecycleOwner, {
+        binding.viewModel?.myBook?.observe(viewLifecycleOwner) {
             val datas = it
             val gridLayoutManager = GridLayoutManager(context, 2) // 2열
             binding.recyclerView.layoutManager = gridLayoutManager
             val adapter = MyBookAdapter(datas, Glide.with(this))
             binding.recyclerView.adapter = adapter
-        })
-        
+        }
+
         Log.e("Fragement Life Cycle", "onViewCreated")
     }
 

@@ -71,7 +71,7 @@ class MainFragment : Fragment() {
 
         })
 
-        myViewModel.book.observe(viewLifecycleOwner, {
+        myViewModel.book.observe(viewLifecycleOwner) {
             // 테스트 데이터
             val datas = it
             val gridLayoutManager = GridLayoutManager(context, 2) // 2열
@@ -79,16 +79,20 @@ class MainFragment : Fragment() {
             val adapter = BookAdapter(datas, Glide.with(this))
             binding.recyclerView.adapter = adapter
 //            binding.recyclerView.addItemDecoration(DividerItemDecoration(binding.root.context, LinearLayoutManager.VERTICAL))
-            adapter.setOnItemClickListener(object: BookAdapter.OnItemClickListener {
+            adapter.setOnItemClickListener(object : BookAdapter.OnItemClickListener {
                 override fun onItemClick(v: View, data: BookModel, position: Int) {
                     val dialog = BookDialog(requireContext())
-                    dialog.setOnPositiveBtnClickedListener{ content ->
-                        myViewModel.getMyBook(data.title, data.isbn.substring(data.isbn.length-13), data)
+                    dialog.setOnPositiveBtnClickedListener { content ->
+                        myViewModel.getMyBook(
+                            data.title,
+                            data.isbn.substring(data.isbn.length - 13),
+                            data
+                        )
                     }
                     dialog.start(data.image, data.title, data.author, data.publisher)
                 }
             })
-        })
+        }
 
         binding.recyclerView.addOnScrollListener(object: RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
