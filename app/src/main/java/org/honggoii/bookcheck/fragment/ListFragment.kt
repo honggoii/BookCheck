@@ -39,53 +39,10 @@ class ListFragment : Fragment() {
 
         binding.viewModel?.myBook?.observe(viewLifecycleOwner) {
             val datas = it
-            val gridLayoutManager = GridLayoutManager(context, 2) // 2열
+            val gridLayoutManager = GridLayoutManager(context, 3) // 3열
             binding.recyclerView.layoutManager = gridLayoutManager
             val adapter = MyBookAdapter(datas, Glide.with(this))
             binding.recyclerView.adapter = adapter
         }
-
-        Log.e("Fragement Life Cycle", "onViewCreated")
-    }
-
-    override fun onViewStateRestored(savedInstanceState: Bundle?) {
-        super.onViewStateRestored(savedInstanceState)
-        Log.e("Fragement Life Cycle", "onViewStateRestored")
-    }
-
-    override fun onStart() {
-        super.onStart()
-        Log.e("Fragement Life Cycle", "onStart")
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        Log.e("Fragement Life Cycle", "onResume")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.e("Fragement Life Cycle", "onPause")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.e("Fragement Life Cycle", "onStop")
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        Log.e("Fragement Life Cycle", "onSaveInstanceState")
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        Log.e("Fragement Life Cycle", "onDestroyView")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.e("Fragement Life Cycle", "onDestroy")
     }
 }
