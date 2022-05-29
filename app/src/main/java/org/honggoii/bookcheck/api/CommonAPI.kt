@@ -24,7 +24,7 @@ interface CommonAPI {
         @Header("X-Naver-Client-Secret") pw: String = BuildConfig.SEARCH_API_CLIENT_SECRET,
         @Query("query") query: String,
         @Query("start") start: Int,
-        @Query("display") display: Int = 20,
+        @Query("display") display: Int = 100,
     ) : Call<SearchResponse>
 
     companion object {

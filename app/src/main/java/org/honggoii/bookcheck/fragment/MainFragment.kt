@@ -50,13 +50,11 @@ class MainFragment : Fragment() {
 
             /* 검색어가 변할때 마다 호출 */
             override fun onQueryTextChange(newText: String?): Boolean {
-                Log.e("MainFragment", "######### onQueryTextChange 호출")
                 return false
             }
 
             /* 검색어 작성 후 api 호출 */
             override fun onQueryTextSubmit(title: String?): Boolean {
-                Log.e("MainFragment", "######### onQueryTextSubmit 호출")
                 query = title
                 myViewModel.getBookSearch(title, start)
                 return false
@@ -74,7 +72,7 @@ class MainFragment : Fragment() {
         myViewModel.book.observe(viewLifecycleOwner) {
             // 테스트 데이터
             val datas = it
-            val gridLayoutManager = GridLayoutManager(context, 2) // 2열
+            val gridLayoutManager = GridLayoutManager(context, 3) // 3열
             binding.recyclerView.layoutManager = gridLayoutManager
             val adapter = BookAdapter(datas, Glide.with(this))
             binding.recyclerView.adapter = adapter

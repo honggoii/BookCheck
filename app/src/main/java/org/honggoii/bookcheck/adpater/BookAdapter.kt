@@ -7,9 +7,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
 import org.honggoii.bookcheck.databinding.BookItemViewBinding
+import org.honggoii.bookcheck.databinding.SearchBookItemViewBinding
 import org.honggoii.bookcheck.model.BookModel
 
-class BookAdapter(val datas: List<BookModel>, private val glideRequestManager: RequestManager) : RecyclerView.Adapter<BookItemViewHolder>() {
+class BookAdapter(val datas: List<BookModel>, private val glideRequestManager: RequestManager) : RecyclerView.Adapter<SearchBookItemViewHolder>() {
     interface OnItemClickListener{ // 인터페이스
         fun onItemClick(v: View, data: BookModel, position: Int)
     }
@@ -18,18 +19,17 @@ class BookAdapter(val datas: List<BookModel>, private val glideRequestManager: R
         this.listener = listener
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookItemViewHolder =
-        BookItemViewHolder(BookItemViewBinding.inflate(LayoutInflater.from(parent.context),
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchBookItemViewHolder =
+        SearchBookItemViewHolder(
+            SearchBookItemViewBinding.inflate(LayoutInflater.from(parent.context),
         parent, false))
 
-    override fun onBindViewHolder(holder: BookItemViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: SearchBookItemViewHolder, position: Int) {
         val binding = holder.binding
-        Log.e("BookAdapter", datas[position].title)
 
         datas[position].let { item ->
             with(binding) {
-                glideRequestManager.load(datas[position].image).override(300, 300).into(image)
-                title.text = datas[position].title.replace("<b>", "").replace("</b>", "")
+                glideRequestManager.load(datas[position].image).override(400, 400).into(image)
                 image.setOnClickListener {
                     listener?.onItemClick(it, item, position)
                 }
