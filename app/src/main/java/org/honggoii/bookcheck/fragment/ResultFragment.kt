@@ -26,6 +26,7 @@ class ResultFragment : Fragment() {
     private lateinit var myViewModel: BookViewModel
 
     private lateinit var label: List<String>
+    private val entries:ArrayList<PieEntry> = ArrayList()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.pie_chart, container, false)
@@ -54,21 +55,59 @@ class ResultFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.viewModel?.getMyBookCode()
+
+        binding.viewModel?.code0?.observe(viewLifecycleOwner) {
+            if (it.toInt() != 0)
+                entries.add(PieEntry(it, label[0]))
+        }
+
+        binding.viewModel?.code1?.observe(viewLifecycleOwner) {
+            if (it.toInt() != 0)
+                entries.add(PieEntry(it, label[1]))
+        }
+
+        binding.viewModel?.code2?.observe(viewLifecycleOwner) {
+            if (it.toInt() != 0)
+                entries.add(PieEntry(it, label[2]))
+        }
+
+        binding.viewModel?.code3?.observe(viewLifecycleOwner) {
+            if (it.toInt() != 0)
+                entries.add(PieEntry(it, label[3]))
+        }
+
+        binding.viewModel?.code4?.observe(viewLifecycleOwner) {
+            if (it.toInt() != 0)
+                entries.add(PieEntry(it, label[4]))
+        }
+
+        binding.viewModel?.code5?.observe(viewLifecycleOwner) {
+            if (it.toInt() != 0)
+                entries.add(PieEntry(it, label[5]))
+        }
+
+        binding.viewModel?.code6?.observe(viewLifecycleOwner) {
+            if (it.toInt() != 0)
+                entries.add(PieEntry(it, label[6]))
+        }
+        binding.viewModel?.code7?.observe(viewLifecycleOwner) {
+            if (it.toInt() != 0)
+                entries.add(PieEntry(it, label[7]))
+        }
+
+        binding.viewModel?.code8?.observe(viewLifecycleOwner) {
+            if (it.toInt() != 0)
+                entries.add(PieEntry(it, label[8]))
+        }
+
+        binding.viewModel?.code9?.observe(viewLifecycleOwner) {
+            if (it.toInt() != 0)
+                entries.add(PieEntry(it, label[9]))
+        }
     }
 
     override fun onResume() {
         super.onResume()
-        val entries:ArrayList<PieEntry> = ArrayList()
-
-        /* 데이터베이스에서 가져오기 */
-        binding.viewModel?.code?.observe(viewLifecycleOwner) {
-            it.forEachIndexed { index, value ->
-                if (value.toInt() != 0) { // 0%인 분류는 제외
-                    entries.add(PieEntry(value, label[index]))
-                }
-            }
-        }
 
         /* 차트 색상 */
         val colors: ArrayList<Int> = ArrayList()

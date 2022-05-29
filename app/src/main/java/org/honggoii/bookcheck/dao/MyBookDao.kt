@@ -23,32 +23,32 @@ interface MyBookDao {
     suspend fun deleteAll()
 
     @Query("SELECT COUNT(*) FROM my_book WHERE code == '0'")
-    suspend fun getCode0(): Float
+    fun getCode0(): LiveData<Float>
 
     @Query("SELECT COUNT(*) FROM my_book WHERE code == '1'")
-    suspend fun getCode1(): Float
+    fun getCode1(): LiveData<Float>
 
     @Query("SELECT COUNT(*) FROM my_book WHERE code == '2'")
-    suspend fun getCode2(): Float
+    fun getCode2(): LiveData<Float>
 
     @Query("SELECT COUNT(*) FROM my_book WHERE code == '3'")
-    suspend fun getCode3(): Float
+    fun getCode3(): LiveData<Float>
 
     @Query("SELECT COUNT(*) FROM my_book WHERE code == '4'")
-    suspend fun getCode4(): Float
+    fun getCode4(): LiveData<Float>
 
     @Query("SELECT COUNT(*) FROM my_book WHERE code == '5'")
-    suspend fun getCode5(): Float
+    fun getCode5(): LiveData<Float>
 
     @Query("SELECT COUNT(*) FROM my_book WHERE code == '6'")
-    suspend fun getCode6(): Float
+    fun getCode6(): LiveData<Float>
 
     @Query("SELECT COUNT(*) FROM my_book WHERE code == '7'")
-    suspend fun getCode7(): Float
+    fun getCode7(): LiveData<Float>
 
     @Query("SELECT COUNT(*) FROM my_book WHERE code == '8'")
-    suspend fun getCode8(): Float
+    fun getCode8(): LiveData<Float>
 
     @Query("SELECT COUNT(*) FROM my_book WHERE code == '9'")
-    suspend fun getCode9(): Float
+    fun getCode9(): LiveData<Float>
 }

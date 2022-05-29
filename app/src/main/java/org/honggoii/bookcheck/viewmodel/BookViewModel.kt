@@ -25,26 +25,26 @@ class BookViewModel(val database: MyBookDao, application: Application) : Android
     val myBook: LiveData<List<MyBook>>
         get() = database.getAll()
 
-    private val _code = MutableLiveData<List<Float>>()
-    val code: LiveData<List<Float>>
-        get() = _code
-
-    fun getMyBookCode() {
-        viewModelScope.launch {
-            _code.value = listOf(
-                database.getCode0(),
-                database.getCode1(),
-                database.getCode2(),
-                database.getCode3(),
-                database.getCode4(),
-                database.getCode5(),
-                database.getCode6(),
-                database.getCode7(),
-                database.getCode8(),
-                database.getCode9(),
-            )
-        }
-    }
+    val code0: LiveData<Float>
+        get() = database.getCode0()
+    val code1: LiveData<Float>
+        get() = database.getCode1()
+    val code2: LiveData<Float>
+        get() = database.getCode2()
+    val code3: LiveData<Float>
+        get() = database.getCode3()
+    val code4: LiveData<Float>
+        get() = database.getCode4()
+    val code5: LiveData<Float>
+        get() = database.getCode5()
+    val code6: LiveData<Float>
+        get() = database.getCode6()
+    val code7: LiveData<Float>
+        get() = database.getCode7()
+    val code8: LiveData<Float>
+        get() = database.getCode8()
+    val code9: LiveData<Float>
+        get() = database.getCode9()
 
     fun getBookSearch(query: String?, start: Int) {
         BookAPI.retrofitService.getSearch(query = URLDecoder.decode(query, "UTF-8"), start = start).enqueue(
