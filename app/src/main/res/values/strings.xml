@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">BookCheck</string>
+
+    <!-- Tab Name -->
+    <string name="search">책 검색</string>
+    <string name="read">읽은 책</string>
+    <string name="classification">책 분류</string>
+
+    <!-- 책 분류 코드 네임 -->
+    <string name="Code0">총류</string>
+    <string name="Code1">철학</string>
+    <string name="Code2">종교</string>
+    <string name="Code3">사회과학</string>
+    <string name="Code4">자연과학</string>
+    <string name="Code5">기술과학</string>
+    <string name="Code6">예술</string>
+    <string name="Code7">언어</string>
+    <string name="Code8">문학</string>
+    <string name="Code9">역사</string>
 </resources>
