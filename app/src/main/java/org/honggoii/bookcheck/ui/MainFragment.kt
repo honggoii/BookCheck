@@ -1,12 +1,19 @@
 package org.honggoii.bookcheck.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import org.honggoii.bookcheck.adpater.BookAdapter
+import org.honggoii.bookcheck.data.Book
 import org.honggoii.bookcheck.databinding.FragmentMainBinding
 import org.honggoii.bookcheck.viewmodel.BookViewModel
 
@@ -26,6 +33,11 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        bookSearch()
+        bookSearchList()
+    }
+
+    private fun bookSearch() {
         binding.searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
 
             /* 검색어가 변할때 마다 호출 */
@@ -49,4 +61,23 @@ class MainFragment : Fragment() {
         }
     }
 
+    private fun bookSearchList() {
+        viewModel.books.observe(viewLifecycleOwner) {
+            val bookList = it
+            val gridLayoutManager = GridLayoutManager(context, 3) // 3열
+            binding.recyclerView.layoutManager = gridLayoutManager
+            val adapter = BookAdapter(bookList, Glide.with(this))
+            binding.recyclerView.adapter = adapter
+            adapter.setOnItemClickListener(object : BookAdapter.OnItemClickListener {
+                override fun onItemClick(v: View, data: Book, position: Int) {
+                    // todo 책 하나 선택했을 때 다이얼로그 띄우기
+                    Log.e(TAG, "눌렀습니다!!!!!")
+                }
+            })
+        }
+    }
+
+    companion object {
+        const val TAG = "MainFragment"
+    }
 }

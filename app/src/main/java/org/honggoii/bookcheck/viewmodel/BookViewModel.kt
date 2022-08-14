@@ -18,9 +18,9 @@ class BookViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val bookSearchResult = BookSearchApi.retrofitService.getBooks(query = URLDecoder.decode(query, "UTF-8"), start = start)
-                Log.e(TAG, bookSearchResult.toString())
+                _books.value = bookSearchResult.items
             } catch (e: Exception) {
-
+                Log.e(TAG, "네이버 도서 검색 api 호출 실패")
             }
         }
     }
