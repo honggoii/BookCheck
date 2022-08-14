@@ -17,6 +17,7 @@ class BookViewModel : ViewModel() {
     fun getBookSearch(query: String, start: Int) {
         viewModelScope.launch {
             try {
+                // todo 에러 처리 (https://developers.naver.com/docs/serviceapi/search/book/book.md#%EC%B1%85)
                 val bookSearchResult = BookSearchApi.retrofitService.getBooks(query = URLDecoder.decode(query, "UTF-8"), start = start)
                 _books.value = bookSearchResult.items
             } catch (e: Exception) {
