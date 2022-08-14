@@ -40,11 +40,12 @@
 &nbsp;&nbsp;&nbsp;&nbsp;ㄴ MainFragment : 책 검색 탭 화면    
 ㄴ adapter    
 &nbsp;&nbsp;&nbsp;&nbsp;ㄴ TabPagerAdapter : ViewPager에서 사용하는 어댑터     
+&nbsp;&nbsp;&nbsp;&nbsp;ㄴ BookAdapter : 책 검색 리사이클러뷰에서 사용하는 어댑터      
 ㄴ network   
 &nbsp;&nbsp;&nbsp;&nbsp;ㄴ BookSearchApiService : 네이버 도서 검색 API와 국립 중앙 도서관 API를 사용하기 위한 레트로핏 설정 인터페이스    
-&nbsp;&nbsp;&nbsp;&nbsp;ㄴ SearchResponse : 네이버 도서 검색 API 응답 결과
+&nbsp;&nbsp;&nbsp;&nbsp;ㄴ SearchResponse : 네이버 도서 검색 API 응답 결과      
 ㄴ data     
-&nbsp;&nbsp;&nbsp;&nbsp;ㄴ Book : 네이버 도서 데이터
+&nbsp;&nbsp;&nbsp;&nbsp;ㄴ Book : 네이버 도서 데이터      
 ㄴ viewmodel    
 &nbsp;&nbsp;&nbsp;&nbsp;ㄴ BookViewModel    
     
