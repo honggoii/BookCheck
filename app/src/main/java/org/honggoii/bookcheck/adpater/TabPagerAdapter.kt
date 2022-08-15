@@ -4,12 +4,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import org.honggoii.bookcheck.ui.MainFragment
+import org.honggoii.bookcheck.ui.ReadBookFragment
 
 class TabPagerAdapter(activity: FragmentActivity): FragmentStateAdapter(activity) {
-    private val fragments: List<Fragment>
-    init {
-        fragments = listOf(MainFragment(), MainFragment(), MainFragment())
-    }
+    private val fragments: List<Fragment> = listOf(MainFragment(), MainFragment(), ReadBookFragment())
 
     override fun getItemCount(): Int = fragments.size
     override fun createFragment(position: Int): Fragment = fragments[position]

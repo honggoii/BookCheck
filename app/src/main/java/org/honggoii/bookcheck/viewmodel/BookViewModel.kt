@@ -5,10 +5,8 @@ import androidx.lifecycle.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import org.honggoii.bookcheck.data.Book
-import org.honggoii.bookcheck.data.BookCode
 import org.honggoii.bookcheck.database.MyBook
 import org.honggoii.bookcheck.database.MyBookDao
-import org.honggoii.bookcheck.network.BookIsbnResponse
 import org.honggoii.bookcheck.network.BookSearchApi
 import java.net.URLDecoder
 
@@ -16,8 +14,7 @@ class BookViewModel(private val myBookDao: MyBookDao) : ViewModel() {
     private val _books = MutableLiveData<List<Book>>()
     val books: LiveData<List<Book>> = _books
 
-    private val _myBooks = MutableLiveData<List<MyBook>>()
-    val myBooks: LiveData<List<MyBook>> = _myBooks
+    val myBooks: LiveData<List<MyBook>> = myBookDao.getAll().asLiveData()
 
     fun getBookSearch(query: String, start: Int) {
         viewModelScope.launch {
@@ -47,8 +44,6 @@ class BookViewModel(private val myBookDao: MyBookDao) : ViewModel() {
             myBookDao.insert(myBook)
         }
     }
-
-    fun getMyBookList(): Flow<List<MyBook>> = myBookDao.getAll()
 
     companion object {
         const val TAG = "BookViewModel"
