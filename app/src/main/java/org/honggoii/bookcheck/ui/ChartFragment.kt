@@ -55,11 +55,12 @@ class ChartFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.myBookCodes.observe(viewLifecycleOwner) {
+            entries.clear()
+
             for (myBookCode in it) {
                 val code = myBookCode.code
                 val count = myBookCode.count.toFloat()
                 entries.add(PieEntry(count, label[code]))
-                Log.e(TAG, "1111 ${entries.toString()}")
             }
 
             /* 차트 색상 */
