@@ -2,9 +2,9 @@ package org.honggoii.bookcheck.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.*
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import org.honggoii.bookcheck.data.Book
+import org.honggoii.bookcheck.database.Code
 import org.honggoii.bookcheck.database.MyBook
 import org.honggoii.bookcheck.database.MyBookDao
 import org.honggoii.bookcheck.network.BookSearchApi
@@ -15,6 +15,8 @@ class BookViewModel(private val myBookDao: MyBookDao) : ViewModel() {
     val books: LiveData<List<Book>> = _books
 
     val myBooks: LiveData<List<MyBook>> = myBookDao.getAll().asLiveData()
+
+    val myBookCodes: LiveData<List<Code>> = myBookDao.getCode().asLiveData()
 
     fun getBookSearch(query: String, start: Int) {
         viewModelScope.launch {
