@@ -74,10 +74,8 @@ class MainFragment : Fragment() {
             binding.recyclerView.adapter = adapter
             adapter.setOnItemClickListener(object : BookAdapter.OnItemClickListener {
                 override fun onItemClick(v: View, data: Book, position: Int) {
-                    Log.e(TAG, "isbn >>>> ${data.isbn}")
                     val dialog = BookDialog(requireContext())
                     dialog.setOnPositiveBtnClickedListener { content ->
-                        // todo 데이터 베이스에 저장
                         viewModel.getBookIsbn(
                             data.isbn,
                             data
