@@ -1,22 +1,29 @@
 package org.honggoii.bookcheck.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
+import org.honggoii.bookcheck.BookCheckApplication
 import org.honggoii.bookcheck.adpater.BookAdapter
 import org.honggoii.bookcheck.data.Book
 import org.honggoii.bookcheck.databinding.FragmentMainBinding
 import org.honggoii.bookcheck.viewmodel.BookViewModel
+import org.honggoii.bookcheck.viewmodel.BookViewModelFactory
 
 class MainFragment : Fragment() {
 
-    private val viewModel: BookViewModel by viewModels()
+    private val viewModel: BookViewModel by activityViewModels {
+        BookViewModelFactory(
+            (activity?.application as BookCheckApplication).database.myBookDao()
+        )
+    }
     private lateinit var binding: FragmentMainBinding
 
     private var query: String? = ""
@@ -67,12 +74,16 @@ class MainFragment : Fragment() {
             binding.recyclerView.adapter = adapter
             adapter.setOnItemClickListener(object : BookAdapter.OnItemClickListener {
                 override fun onItemClick(v: View, data: Book, position: Int) {
+                    Log.e(TAG, "isbn >>>> ${data.isbn}")
                     val dialog = BookDialog(requireContext())
-                    dialog.start(data.image, data.title, data.author, data.publisher)
-
                     dialog.setOnPositiveBtnClickedListener { content ->
                         // todo 데이터 베이스에 저장
+                        viewModel.getBookIsbn(
+                            data.isbn,
+                            data
+                        )
                     }
+                    dialog.start(data.image, data.title, data.author, data.publisher)
                 }
             })
         }
