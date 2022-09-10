@@ -41,34 +41,42 @@
 
 <img width="536" alt="스크린샷 2022-05-10 오전 12 21 12" src="https://user-images.githubusercontent.com/46019755/167442599-01632f5b-9e17-47d8-b7ba-a059486d8ee7.png">
 
-## 프로젝트 구조
-ㄴ ui    
-&nbsp;&nbsp;&nbsp;&nbsp;ㄴ BookDialog : 커스텀 다이얼로그    
-&nbsp;&nbsp;&nbsp;&nbsp;ㄴ MainActivity : 3개의 Fragment를 담을 액티비티    
-&nbsp;&nbsp;&nbsp;&nbsp;ㄴ MainFragment : 책 검색 탭 화면    
-&nbsp;&nbsp;&nbsp;&nbsp;ㄴ ChartFragment : 십진분류법에 따른 차트 탭 화면    
-&nbsp;&nbsp;&nbsp;&nbsp;ㄴ ReadBookFragment : 읽은 책 택 화면    
-ㄴ adapter    
-&nbsp;&nbsp;&nbsp;&nbsp;ㄴ TabPagerAdapter : ViewPager에서 사용하는 어댑터     
-&nbsp;&nbsp;&nbsp;&nbsp;ㄴ BookAdapter : 책 검색 리사이클러뷰에서 사용하는 어댑터     
-&nbsp;&nbsp;&nbsp;&nbsp;ㄴ MyBookAdapter : 읽은 책 리사이클러뷰에서 사용하는 어댑터     
-&nbsp;&nbsp;&nbsp;&nbsp;ㄴ BookAdapter : 책 검색 리사이클러뷰에서 사용하는 어댑터      
-ㄴ network   
-&nbsp;&nbsp;&nbsp;&nbsp;ㄴ BookSearchApiService : 네이버 도서 검색 API와 국립 중앙 도서관 API를 사용하기 위한 레트로핏 설정 인터페이스    
-&nbsp;&nbsp;&nbsp;&nbsp;ㄴ SearchResponse : 네이버 도서 검색 API 응답 결과      
-&nbsp;&nbsp;&nbsp;&nbsp;ㄴ BookIsbnResponse : 국립 중앙도서관 API 응답 결과      
-ㄴ database        
-&nbsp;&nbsp;&nbsp;&nbsp;ㄴ Code : 코드 분류별 개수 테이블 정의      
-&nbsp;&nbsp;&nbsp;&nbsp;ㄴ MyBook : 읽은 책 데이터베이스 테이블 정의    
-&nbsp;&nbsp;&nbsp;&nbsp;ㄴ MyBookDao : 데이터베이스를 사용하기 위한 쿼리 작성    
-&nbsp;&nbsp;&nbsp;&nbsp;ㄴ MyBookDatabase : 데이터베이스
-ㄴ data     
-&nbsp;&nbsp;&nbsp;&nbsp;ㄴ Book : 네이버 도서 데이터      
-&nbsp;&nbsp;&nbsp;&nbsp;ㄴ BookCode : 국립 중앙도서관 데이터     
-ㄴ viewmodel    
-&nbsp;&nbsp;&nbsp;&nbsp;ㄴ BookViewModel    
--- BookCheckApplication
-    
+## 프로젝트 구조      
+
+```
+├──── BookCheckApplication.kt
+|
+├──── adpater
+|  ├────── BookAdapter.kt               // 책 검색 리사이클러뷰에서 사용하는 어댑터
+|  ├────── MyBookAdapter.kt             // 읽은 책 리사이클러뷰에서 사용하는 어댑터  
+|  └────── TabPagerAdapter.kt           //  ViewPager에서 사용하는 어댑터 
+|
+├──── data
+|  ├────── Book.kt                     // 네이버 도서 데이터   
+|  └────── BookCode.kt                 // 국립 중앙도서관 데이터   
+|
+├──── database
+|  ├────── Code.kt                     // 코드 분류별 개수 테이블 정의      
+|  ├────── MyBook.kt                   // 읽은 책 데이터베이스 테이블 정의
+|  ├────── MyBookDao.kt                // 데이터베이스를 사용하기 위한 쿼리 작성  
+|  └────── MyBookDatabase.kt           // 데이터베이스 
+|
+├────network
+|  ├────── BookSearchApiService.kt     // 네이버 도서 검색 API와 국립 중앙 도서관 API를 사용하기 위한 레트로핏 설정 인터페이스 
+|  ├────── BookIsbnResponse.kt         // 국립 중앙도서관 API 응답 결과
+|  └────── SearchResponse.kt           // 네이버 도서 검색 API 응답 결과 
+|
+├──── ui
+|  ├────── BookDialog.kt               // 커스텀 다이얼로그
+|  ├────── ChartFragment.kt            // 십진분류법에 따른 차트 탭 화면  
+|  ├────── MainActivity.kt             // 3개의 Fragment를 담을 액티비티    
+|  ├────── MainFragment.kt             // 책 검색 탭 화면
+|  └────── ReadBookFragment.kt         // 읽은 책 탭 화면  
+|       
+└──── viewmodel
+   └─ BookViewModel.kt
+```
+
 
 ## 프로젝트를 통해 배운점
 - 공공API를 사용하기 위해서는 신청을 해야한다.
