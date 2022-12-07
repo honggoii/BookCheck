@@ -1,12 +1,12 @@
 # BookCheck
 읽은 책을 기록하는 앱
 
-
-<img src="https://user-images.githubusercontent.com/46019755/184641306-f114da8b-c30a-4b74-8d68-ff94c25b619d.png" width="30%"/>
-<img src="https://user-images.githubusercontent.com/46019755/184641310-07700bfa-c2eb-448a-8381-19c42dfcb342.png" width="30%"/>
-<img src="https://user-images.githubusercontent.com/46019755/184641316-742146ec-9cd1-47ed-a9b8-83559eaa71f1.png" width="30%"/>
-<img src="https://user-images.githubusercontent.com/46019755/184641322-cfa9f92a-1c22-4eae-aae6-0a95f5cb794b.png" width="30%"/>
-
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/46019755/184641306-f114da8b-c30a-4b74-8d68-ff94c25b619d.png" width="23%"/>
+  <img src="https://user-images.githubusercontent.com/46019755/184641310-07700bfa-c2eb-448a-8381-19c42dfcb342.png" width="23%"/>
+  <img src="https://user-images.githubusercontent.com/46019755/184641316-742146ec-9cd1-47ed-a9b8-83559eaa71f1.png" width="23%"/>
+  <img src="https://user-images.githubusercontent.com/46019755/184641322-cfa9f92a-1c22-4eae-aae6-0a95f5cb794b.png" width="23%"/>
+</p>
 
 ## 개발 이유
 문학(800)만 읽는 것 같아, 다양한 분야의 책을 읽고 싶었다. 십진분류법에 따라 통계를 내주어 평소 내가 어떤 분야의 책을 읽는지 확인을 하고 싶어 만든 안드로이드 앱.
