@@ -94,9 +94,12 @@ class MainFragment : Fragment() {
         }
 
         binding.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-                if (recyclerView.canScrollVertically(-1)) {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                val lastVisibleItemPosition =(recyclerView.layoutManager as GridLayoutManager)
+                    .findLastCompletelyVisibleItemPosition()
+                if ((lastVisibleItemPosition + 1) >= bookList.size) {
                     Log.e(TAG, "Get Next Page!!")
                     searchFlag++
                     query?.let {
