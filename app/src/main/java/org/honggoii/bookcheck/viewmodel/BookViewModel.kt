@@ -10,6 +10,8 @@ import org.honggoii.bookcheck.database.MyBookDao
 import org.honggoii.bookcheck.network.BookSearchApi
 import java.net.URLDecoder
 
+enum class BookSearchApiStatus { LOADING, SUCCESS, ERROR }
+
 class BookViewModel(private val myBookDao: MyBookDao) : ViewModel() {
     private val _books = MutableLiveData<List<Book>>()
     val books: LiveData<List<Book>> = _books
@@ -18,13 +20,19 @@ class BookViewModel(private val myBookDao: MyBookDao) : ViewModel() {
 
     val myBookCodes: LiveData<List<Code>> = myBookDao.getCode().asLiveData()
 
+    private val _searchStatus = MutableLiveData<BookSearchApiStatus>()
+    val searchStatus: LiveData<BookSearchApiStatus> = _searchStatus
+
     fun getBookSearch(query: String, start: Int) {
+        _searchStatus.value = BookSearchApiStatus.LOADING
         viewModelScope.launch {
             try {
                 // todo 에러 처리 (https://developers.naver.com/docs/serviceapi/search/book/book.md#%EC%B1%85)
                 val bookSearchResult = BookSearchApi.retrofitService.getBooks(query = URLDecoder.decode(query, "UTF-8"), start = start)
+                _searchStatus.value = BookSearchApiStatus.SUCCESS
                 _books.value = bookSearchResult.items
             } catch (e: Exception) {
+                _searchStatus.value = BookSearchApiStatus.ERROR
                 Log.e(TAG, "네이버 도서 검색 api 호출 실패")
             }
         }
