@@ -9,6 +9,7 @@ import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import org.honggoii.bookcheck.BookCheckApplication
 import org.honggoii.bookcheck.adpater.BookAdapter
@@ -25,9 +26,12 @@ class MainFragment : Fragment() {
         )
     }
     private lateinit var binding: FragmentMainBinding
+    private lateinit var adapter: BookAdapter
 
-    private var query: String? = ""
-    private var start: Int = 1
+    private var query: String? = "" // 검색
+    private var searchFlag: Int = 1 // 검색 시작 위치
+
+    private val bookList: MutableList<Book> = arrayListOf()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentMainBinding.inflate(inflater, container, false)
@@ -36,6 +40,11 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val gridLayoutManager = GridLayoutManager(context, 3) // 3열
+        binding.recyclerView.layoutManager = gridLayoutManager
+        adapter = BookAdapter(bookList, Glide.with(this))
+        binding.recyclerView.adapter = adapter
 
         bookSearch()
         bookSearchList()
@@ -53,7 +62,7 @@ class MainFragment : Fragment() {
             override fun onQueryTextSubmit(title: String?): Boolean {
                 query = title
                 title?.let {
-                    viewModel.getBookSearch(title, start)
+                    viewModel.getBookSearch(title, searchFlag)
                 }
                 return false
             }
@@ -66,12 +75,10 @@ class MainFragment : Fragment() {
     }
 
     private fun bookSearchList() {
+
         viewModel.books.observe(viewLifecycleOwner) {
-            val bookList = it
-            val gridLayoutManager = GridLayoutManager(context, 3) // 3열
-            binding.recyclerView.layoutManager = gridLayoutManager
-            val adapter = BookAdapter(bookList, Glide.with(this))
-            binding.recyclerView.adapter = adapter
+            bookList.addAll(it)
+            adapter.notifyDataSetChanged()
             adapter.setOnItemClickListener(object : BookAdapter.OnItemClickListener {
                 override fun onItemClick(v: View, data: Book, position: Int) {
                     val dialog = BookDialog(requireContext())
@@ -85,6 +92,19 @@ class MainFragment : Fragment() {
                 }
             })
         }
+
+        binding.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                if (recyclerView.canScrollVertically(-1)) {
+                    Log.e(TAG, "Get Next Page!!")
+                    searchFlag++
+                    query?.let {
+                        viewModel.getBookSearch(it, searchFlag)
+                    }
+                }
+            }
+        })
     }
 
     companion object {
