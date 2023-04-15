@@ -2,6 +2,8 @@ package org.honggoii.bookcheck.network
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import org.honggoii.bookcheck.BuildConfig
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -12,6 +14,12 @@ import retrofit2.http.Query
 
 private const val NAVER_BASE_URL = "https://openapi.naver.com/v1/search/"
 private const val NL_BASE_URL = "https://www.nl.go.kr/NL/search/openApi/"
+
+private val interceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+private val client = OkHttpClient
+    .Builder()
+    .addInterceptor(interceptor)
+    .build()
 
 /**
  * Moshi object
@@ -27,6 +35,7 @@ private val moshi = Moshi.Builder()
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(MoshiConverterFactory.create(moshi).asLenient())
     .baseUrl(NAVER_BASE_URL)
+    .client(client)
     .build()
 
 /**
