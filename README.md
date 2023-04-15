@@ -36,10 +36,6 @@
 - Glide
 - [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart) (document: https://weeklycoding.com/mpandroidchart-documentation/)
 
-## 아키텍처
-
-<img width="536" alt="스크린샷 2022-05-10 오전 12 21 12" src="https://user-images.githubusercontent.com/46019755/167442599-01632f5b-9e17-47d8-b7ba-a059486d8ee7.png">
-
 ## 프로젝트 구조      
 
 ```
